@@ -1,30 +1,16 @@
 require_relative 'questionsdb'
-require_relative 'reply'
+require_relative 'reply' ##not needed
 require_relative 'questionfollow'
 require_relative 'questionlike'
-require_relative 'modelbase'
+require_relative 'modelbase' #not needed
 
 
-class Question
+class Question < ModelBase
 
   TABLE = "questions"
 
-  def self.all #display all rows of table
-    data = QuestionsDB.instance.execute("SELECT * FROM questions")
-    data.map { |datum| Question.new(datum) }
-  end
-
-  def self.find_by_question_id(id)
-    data = QuestionsDB.instance.execute(<<-SQL, id)
-    SELECT
-    *
-    FROM
-    questions
-    WHERE
-    #{table_id} = ?
-    SQL
-    #data returned as array
-    data.map { |datum| Question.new(datum) }
+  def self.table
+    TABLE
   end
 
   def self.find_by_author_id(author_id)

@@ -4,15 +4,10 @@ require_relative 'user'
 
 class QuestionFollow
 
-  def self.all #display all rows of table
-    data = QuestionsDB.instance.execute("SELECT * FROM question_follows")
-    data.map { |datum| QuestionFollow.new(datum) }
-  end
-
   def self.followers_for_question_id(question_id)
     data = QuestionsDB.instance.execute(<<-SQL, question_id)
     SELECT
-    *
+    * --users.* to only select
     FROM
     users
     JOIN
@@ -54,14 +49,6 @@ class QuestionFollow
     LIMIT
     ?
     SQL
-  end
-
-  attr_accessor :user_id, :question_id
-
-  def initialize(options)
-    @id = options['id']
-    @question_id = options['question_id']
-    @user_id = options['user_id']
   end
 
 end

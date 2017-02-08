@@ -7,7 +7,7 @@ require_relative 'modelbase'
 
 class User < ModelBase
 
-  TABLE = User.quote("users")
+  TABLE = "users"
 
   def self.table
     TABLE
