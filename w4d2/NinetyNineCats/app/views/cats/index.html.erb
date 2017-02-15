@@ -1,0 +1,13 @@
+<h1>CATS!</h1>
+
+  <ul>
+    <% @cats.each do |cat| %>
+    <li>
+      <h2> <%= cat.name.capitalize %> </h2>
+      <p><%= cat.age  %> year(s) old</p>
+      <p>Sex: <%= cat.sex == "m" ? "Male" : "Female" %></p>
+      <p>Color: <%=  cat.color.capitalize %> </p>
+      <%= link_to("#{cat.name}'s page", cat_url(cat.id) )%> 
+    </li>
+    <% end %>
+  </ul>
